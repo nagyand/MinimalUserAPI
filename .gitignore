@@ -493,3 +493,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 /src/VTW/VTW.SimpleTradeSystem/nuget.exe
+/src/MinimalUserAPI/MinimalUserAPI/appsettings.Development.json
