@@ -1,7 +1,4 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-
-namespace MinimalUserAPI.Application.Entity;
+﻿namespace MinimalUserAPI.Application.Entity;
 public record User
 {
     public int Id { get; init; }

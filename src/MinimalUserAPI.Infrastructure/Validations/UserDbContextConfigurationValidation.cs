@@ -15,6 +15,10 @@ public class UserDbContextConfigurationValidation : IValidateOptions<UserDbConte
         {
             errorMessage += "Database name is empty";
         }
+        if (string.IsNullOrEmpty(options.CollectionName))
+        {
+            errorMessage += "Collection name is empty";
+        }
         if (!string.IsNullOrEmpty(errorMessage))
         {
             return ValidateOptionsResult.Fail(errorMessage);

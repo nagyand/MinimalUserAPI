@@ -4,4 +4,5 @@ public record UserDbContextConfiguration
     public static string ConfigurationRootName = "UserDbContextConfiguration";
     public string ConnectionString { get; init; }
     public string DatabaseName { get; init; }
+    public string CollectionName { get; init; }
 }
