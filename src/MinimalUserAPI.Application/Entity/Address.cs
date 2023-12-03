@@ -1,6 +1,13 @@
-﻿namespace MinimalUserAPI.Application.Entity;
+﻿using System.Text.Json.Serialization;
+
+namespace MinimalUserAPI.Application.Entity;
 public record Address
 {
+    [JsonConstructor]
+    public Address()
+    {
+        
+    }
     public string Street { get; init; }
     public string City { get; init; }
     public string Suite { get; init; }

@@ -15,4 +15,8 @@
     <ProjectReference Include="..\..\MinimalUserAPI.Infrastructure\MinimalUserAPI.Infrastructure.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<InternalsVisibleTo Include="MinimalUserAPI.IntegrationTest" />
+	</ItemGroup>
+
 </Project>

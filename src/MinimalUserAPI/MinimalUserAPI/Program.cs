@@ -26,3 +26,5 @@ app.MapGroup("api/v1/users")
 
 app.Run();
 
+public partial class Program { }
+

@@ -1,6 +1,13 @@
-﻿namespace MinimalUserAPI.Application.Entity;
+﻿using System.Text.Json.Serialization;
+
+namespace MinimalUserAPI.Application.Entity;
 public record User
 {
+    [JsonConstructor]
+    public User()
+    {
+        
+    }
     public int Id { get; init; }
     public string Name { get; init; }
     public string UserName { get; init; }
