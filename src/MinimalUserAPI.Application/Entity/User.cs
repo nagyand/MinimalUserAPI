@@ -9,6 +9,4 @@ public record User
     public string Website { get; init; }
     public Company Company { get; init; }
     public Address Address { get; init; }
-
-
 }

@@ -1,5 +1,5 @@
 ﻿namespace MinimalUserAPI.Application.Entity;
-public class Address
+public record Address
 {
     public string Street { get; init; }
     public string City { get; init; }

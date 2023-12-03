@@ -49,7 +49,7 @@ public static class UserAPIV01Endpoints
         return TypedResults.Ok(updatedUser);
     }
 
-    public static async Task<Results<Ok<long>, NotFound<UserNotFound>>> DeleteUser(int userId, IValidator<User> userValidator, IUserRepository userRepository)
+    public static async Task<Results<Ok<long>, NotFound<UserNotFound>>> DeleteUser(int userId, IUserRepository userRepository)
     {
         if (userId <= 0)
         {
