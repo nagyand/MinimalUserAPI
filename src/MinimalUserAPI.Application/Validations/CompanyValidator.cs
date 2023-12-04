@@ -6,8 +6,8 @@ public class CompanyValidator : AbstractValidator<Company>
 {
     public CompanyValidator()
     {
-        RuleFor(s => s.Name).NotEmpty();
-        RuleFor(s => s.CatchPhrase).NotEmpty();
-        RuleFor(s => s.Bs).NotEmpty();
+        RuleFor(s => s.Name).NotEmpty().Matches(@"^([a-zA-Z\s\-]+)$");
+        RuleFor(s => s.CatchPhrase).NotEmpty().Matches(@"^([a-zA-Z\s\-]+)$");
+        RuleFor(s => s.Bs).NotEmpty().Matches(@"^([a-zA-Z\s\-]+)$");
     }
 }
