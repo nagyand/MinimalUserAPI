@@ -14,7 +14,7 @@ public class MinimalAPIUnitTests
     public async void MinimalUserAPI_GetUsersTest()
     {
         //Arrange
-        IUserRepository userRepository = Substitute.For<IUserRepository>();
+        IUserService userRepository = Substitute.For<IUserService>();
         userRepository.GetUsers().Returns(GetUsers());
 
         //Act
@@ -32,7 +32,7 @@ public class MinimalAPIUnitTests
     public async void MinimalUserAPI_AddNewUser_InvalidUser_Test()
     {
         //Arrange
-        IUserRepository userRepository = Substitute.For<IUserRepository>();
+        IUserService userRepository = Substitute.For<IUserService>();
         userRepository.InsertUser(default!).ReturnsForAnyArgs(new User());
         IValidator<User> userValidator = Substitute.For<IValidator<User>>();
         userValidator.Validate(default!).ReturnsForAnyArgs(new ValidationResult(new List<ValidationFailure> { new ValidationFailure("userId", "user Id is negative") }));
@@ -51,7 +51,7 @@ public class MinimalAPIUnitTests
     {
         //Arrange
         var newUser = GetUser();
-        IUserRepository userRepository = Substitute.For<IUserRepository>();
+        IUserService userRepository = Substitute.For<IUserService>();
         userRepository.InsertUser(default!).ReturnsForAnyArgs(newUser);
         IValidator<User> userValidator = Substitute.For<IValidator<User>>();
         userValidator.Validate(default!).ReturnsForAnyArgs(new ValidationResult());
@@ -73,7 +73,7 @@ public class MinimalAPIUnitTests
     public async void MinimalUserAPI_DeleteUser_NotFoundInvalidUserId_Test(int invalidUserId)
     {
         //Arrange
-        IUserRepository userRepository = Substitute.For<IUserRepository>();
+        IUserService userRepository = Substitute.For<IUserService>();
 
         //Act
         var response = await UserAPIV01Endpoints.DeleteUser(invalidUserId, userRepository);
@@ -89,7 +89,7 @@ public class MinimalAPIUnitTests
         //Arrange
         int userId = 11;
         int numberOfUserDeleted = 0;
-        IUserRepository userRepository = Substitute.For<IUserRepository>();
+        IUserService userRepository = Substitute.For<IUserService>();
         userRepository.DeleteUser(userId).Returns(numberOfUserDeleted);
 
         //Act
@@ -106,7 +106,7 @@ public class MinimalAPIUnitTests
         //Arrange
         int userId = 11;
         int numberOfUserDeleted = 1;
-        IUserRepository userRepository = Substitute.For<IUserRepository>();
+        IUserService userRepository = Substitute.For<IUserService>();
         userRepository.DeleteUser(userId).Returns(numberOfUserDeleted);
 
         //Act
@@ -126,7 +126,7 @@ public class MinimalAPIUnitTests
     public async void MinimalUserAPI_UpdateUser_NotFoundInvalidUserId_Test(int invalidUserId)
     {
         //Arrange
-        IUserRepository userRepository = Substitute.For<IUserRepository>();
+        IUserService userRepository = Substitute.For<IUserService>();
         IValidator<User> userValidator = Substitute.For<IValidator<User>>();
         User user = GetUser();
 
@@ -143,7 +143,7 @@ public class MinimalAPIUnitTests
     {
         //Arrange
         int userId = 11;
-        IUserRepository userRepository = Substitute.For<IUserRepository>();
+        IUserService userRepository = Substitute.For<IUserService>();
         IValidator<User> userValidator = Substitute.For<IValidator<User>>();
         userValidator.Validate(default!).ReturnsForAnyArgs(new ValidationResult(new List<ValidationFailure> { new ValidationFailure("userId", "user Id is negative") }));
         User user = GetUser();
@@ -162,7 +162,7 @@ public class MinimalAPIUnitTests
         //Arrange
         int userId = 11;
         User user = GetUser();
-        IUserRepository userRepository = Substitute.For<IUserRepository>();
+        IUserService userRepository = Substitute.For<IUserService>();
         userRepository.UpdateUser(default!, default!).ReturnsForAnyArgs(user);
         IValidator<User> userValidator = Substitute.For<IValidator<User>>();
         userValidator.Validate(default!).ReturnsForAnyArgs(new ValidationResult());

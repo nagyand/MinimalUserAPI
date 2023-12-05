@@ -75,7 +75,7 @@ public static class UserTestData
             Street = "Raptor Trail",
             Suite = "Suite 244",
             City = "Budapest",
-            ZipCode = "1099",
+            ZipCode = "10599",
             Geo = new Geo
             {
                 Lat = 24.8918,

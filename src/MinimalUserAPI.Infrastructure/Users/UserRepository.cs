@@ -22,9 +22,9 @@ public class UserRepository : IUserRepository
         return deleteResult.DeletedCount;
     }
 
-    public async ValueTask<IEnumerable<User>> GetUsers()
+    public async ValueTask<IEnumerable<User>> GetUsersByFilter(FilterDefinition<User> filter)
     {
-        var filter = Builders<User>.Filter.Empty;
+        ArgumentNullException.ThrowIfNull(filter, nameof(filter));
         var users = await dbContext.Users.FindAsync(filter);
         return await users.ToListAsync();
     }
@@ -34,21 +34,15 @@ public class UserRepository : IUserRepository
         ArgumentNullException.ThrowIfNull(user, nameof(user)); 
         await dbContext.Users.InsertOneAsync(user);
         return user;
-
     }
 
-    public async ValueTask<User> UpdateUser(int userId,User user)
+    public Task<User> UpdateUser(int userId,User user)
     {
         if (userId <= 0)
         {
             throw new ArgumentException($"{nameof(userId)} must be greater than '0'");
         }
         ArgumentNullException.ThrowIfNull(user, nameof(user));
-        var replaceResult = await dbContext.Users.ReplaceOneAsync(s => s.Id == userId, user);
-        if (replaceResult.ModifiedCount == 0)
-        {
-            await dbContext.Users.InsertOneAsync(user);
-        }
-        return user;
+        return dbContext.Users.FindOneAndReplaceAsync(s => s.Id == userId, user);
     }
 }

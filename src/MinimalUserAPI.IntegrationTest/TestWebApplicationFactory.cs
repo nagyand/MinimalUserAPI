@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MinimalUserAPI.Application.Extensions;
 using MinimalUserAPI.Application.Interfaces;
+using MinimalUserAPI.Application.Users.Services;
 using MinimalUserAPI.Infrastructure.DbContext;
 using MinimalUserAPI.Infrastructure.Extensions;
 using MinimalUserAPI.Infrastructure.Users;
@@ -44,7 +45,8 @@ public class TestWebApplicationFactory<TProgram>
                 services.Remove(descriptor);
             }
             services.ConfigureInfrastructure(hostContext.Configuration);
-            services.ConfigureValidations();
+            services.ConfigureApplication();
+            services.AddTransient<IUserService, UserService>();
         });
 
         return base.CreateHost(builder);

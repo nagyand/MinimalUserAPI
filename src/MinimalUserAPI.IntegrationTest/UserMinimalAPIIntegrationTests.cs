@@ -30,10 +30,7 @@ public class UserMinimalAPIIntegrationTests: IClassFixture<TestWebApplicationFac
     {
         //Arrange
         var errorMessage = "'Id' must be greater than '0'.";
-        var users = UserTestData.GetInitUsers();
         var newUser = UserTestData.GetUser(invalidUserId);
-
-        users.Add(newUser);
 
         //Act
         var response = await httpClient.PostAsJsonAsync("/api/v1/users", newUser);

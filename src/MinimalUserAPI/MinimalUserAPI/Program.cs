@@ -6,7 +6,7 @@ using MinimalUserAPI.Infrastructure.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.ConfigureInfrastructure(builder.Configuration);
-builder.Services.ConfigureValidations();
+builder.Services.ConfigureApplication();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.ConfiguraMongoDbHealthCheck(builder.Configuration);
@@ -25,8 +25,8 @@ app.MapHealthChecks("/healthz");
 app.UseHttpsRedirection();
 
 app.MapGroup("api/v1/users")
-    .MapUserApiV1()
-    .WithTags("User API");
+   .MapUserApiV1()
+   .WithTags("User API");
 
 app.Run();
 
