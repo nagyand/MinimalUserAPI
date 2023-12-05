@@ -8,7 +8,7 @@ public class UserValidator : AbstractValidator<User>
     {
         RuleFor(s => s.Id).NotEmpty().GreaterThan(0);
         RuleFor(s => s.Name).NotEmpty().Matches(@"([a-zA-Z.]{2,3})?\s?[a-zA-Z]+\s[a-zA-Z]+");
-        RuleFor(s => s.UserName).NotEmpty().Matches(@"[a-zA-Z._]+");
+        RuleFor(s => s.UserName).NotEmpty().Matches(@"^([a-zA-Z._\s]+)$");
         RuleFor(s => s.Email).NotEmpty().EmailAddress();
         RuleFor(s => s.Phone).NotEmpty();
         RuleFor(s => s.Website).NotEmpty().Matches(@"[a-z]+\.[a-z]{2,}");
