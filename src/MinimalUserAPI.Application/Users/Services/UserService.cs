@@ -13,9 +13,10 @@ public class UserService : IUserService
         this.userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
         this.logger = logger;
     }
+
     public ValueTask<long> DeleteUser(int userId)
     {
-        if (userId < 0)
+        if (userId <= 0)
         {
             throw new ArgumentException("User Id must be greater than '0'");
         }
@@ -39,6 +40,10 @@ public class UserService : IUserService
 
     public async ValueTask<User> UpdateUser(int userId, User user)
     {
+        if (userId <= 0)
+        {
+            throw new ArgumentException($"{nameof(userId)} must be greater than '0'");
+        }
         ArgumentNullException.ThrowIfNull(user, nameof(user));
         logger?.LogInformation("Update user with id '{userId}'", userId);
         var updatedUser = await userRepository.UpdateUser(userId, user);

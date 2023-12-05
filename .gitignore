@@ -494,3 +494,4 @@ $RECYCLE.BIN/
 *.lnk
 /src/VTW/VTW.SimpleTradeSystem/nuget.exe
 /src/MinimalUserAPI/MinimalUserAPI/appsettings.Development.json
+/src/MinimalUserAPI/MinimalUserAPI/logs/log.txt
